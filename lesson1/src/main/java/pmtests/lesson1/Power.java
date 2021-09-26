@@ -4,7 +4,12 @@ import java.math.BigInteger;
 
 public class Power {
     public static BigInteger simple(BigInteger base, int exponent) throws IllegalArgumentException {
-        return BigInteger.ONE;
+        BigInteger result = BigInteger.ONE;
+        while (exponent > 0) {
+            result = result.multiply(base);
+            exponent--;
+        }
+        return result;
     }
 
     public static void main(String[] args) {
