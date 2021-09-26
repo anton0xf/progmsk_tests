@@ -4,6 +4,9 @@ import java.math.BigInteger;
 
 public class Power {
     public static BigInteger simple(BigInteger base, int exponent) throws IllegalArgumentException {
+        if (exponent < 0) {
+            throw new IllegalArgumentException("Exponent must be non-negative but it is %d".formatted(exponent));
+        }
         BigInteger result = BigInteger.ONE;
         while (exponent > 0) {
             result = result.multiply(base);
