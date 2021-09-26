@@ -9,7 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PowerTest {
     @Test
-    void simple_zeroExponent() {
+    void simple_zeroPowerOfTen() {
         Assertions.assertEquals(BigInteger.ONE, Power.simple(BigInteger.TEN, 0));
+    }
+
+    @Test
+    void simple_firstPowerOfTen() {
+        Assertions.assertEquals(BigInteger.TEN, Power.simple(BigInteger.TEN, 1));
     }
 }
