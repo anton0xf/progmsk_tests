@@ -7,5 +7,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'pmtests.lesson1.App'
+    mainClass = 'pmtests.lesson1.Power'
 }
