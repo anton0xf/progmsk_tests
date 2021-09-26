@@ -15,6 +15,11 @@ class PowerTest {
     }
 
     @Test
+    void simple_zeroPowerOfZero() {
+        Assertions.assertEquals(BigInteger.ONE, Power.simple(BigInteger.ZERO, 0));
+    }
+
+    @Test
     void simple_zeroPowerOfTen() {
         Assertions.assertEquals(BigInteger.ONE, Power.simple(BigInteger.TEN, 0));
     }
