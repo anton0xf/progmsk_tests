@@ -20,10 +20,30 @@ public class Power {
      * b^(2*e) = (b^2)^e
      * b^(e+1) = b^e * b
      * </br>
-     * So result can be get by O(log(exponent)) multiplications
+     * So result can be get by O(log(exponent)) multiplications. For example:
+     * <code>
+     * b^7 = 1 * b * b^6 = 1 * b * (b*b)^3
+     * =[b1 = b*b]= 1 * b * b1 * b1^2 = 1 * b * b1 * (b1*b1)^1 = 1 * b * b1 * (b1*b1)
+     * = 1 * b * (b*b) * ((b*b)*(b*b))
+     * </code>
      */
     public static BigInteger fast(BigInteger base, int exponent) throws IllegalArgumentException {
-        return BigInteger.ZERO;
+        if (exponent < 0) {
+            throw new IllegalArgumentException("Exponent must be non-negative but it is %d".formatted(exponent));
+        }
+        BigInteger curBase = base;
+        int curExponent = exponent;
+        BigInteger result = BigInteger.ONE;
+        while (curExponent > 0) {
+            if (curExponent % 2 == 0) {
+                curBase = curBase.multiply(curBase);
+                curExponent /= 2;
+            } else {
+                curExponent--;
+                result = result.multiply(curBase);
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {

@@ -42,7 +42,8 @@ class PowerTest {
     }
 
     private static void checkFast(BigInteger base, int exponent) {
-        assertEquals(Power.simple(base, exponent), Power.fast(base, exponent));
+        assertEquals(Power.simple(base, exponent), Power.fast(base, exponent),
+                "%d ^ %d".formatted(base, exponent));
     }
 
     @Test
