@@ -1,0 +1,11 @@
+plugins {
+    id 'pmtests.java-application-conventions'
+}
+
+dependencies {
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'pmtests.lesson1.App'
+}

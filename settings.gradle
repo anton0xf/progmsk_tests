@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'progmsk_tests'
-include('app', 'list', 'utilities')
+include('lesson1')
