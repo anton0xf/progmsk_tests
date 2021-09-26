@@ -15,6 +15,17 @@ public class Power {
         return result;
     }
 
+    /**
+     * Note:
+     * b^(2*e) = (b^2)^e
+     * b^(e+1) = b^e * b
+     * </br>
+     * So result can be get by O(log(exponent)) multiplications
+     */
+    public static BigInteger fast(BigInteger base, int exponent) throws IllegalArgumentException {
+        return BigInteger.ZERO;
+    }
+
     public static void main(String[] args) {
         System.out.printf("2^3 = %d%n", simple(BigInteger.TWO, 3));
     }
