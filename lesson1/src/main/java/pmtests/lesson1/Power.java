@@ -3,10 +3,14 @@ package pmtests.lesson1;
 import java.math.BigInteger;
 
 public class Power {
-    public static BigInteger simple(BigInteger base, int exponent) throws IllegalArgumentException {
+    private static void assertExponentIsNonNegative(int exponent) {
         if (exponent < 0) {
             throw new IllegalArgumentException("Exponent must be non-negative but it is %d".formatted(exponent));
         }
+    }
+
+    public static BigInteger simple(BigInteger base, int exponent) throws IllegalArgumentException {
+        assertExponentIsNonNegative(exponent);
         BigInteger result = BigInteger.ONE;
         while (exponent > 0) {
             result = result.multiply(base);
@@ -28,9 +32,7 @@ public class Power {
      * </code>
      */
     public static BigInteger fast(BigInteger base, int exponent) throws IllegalArgumentException {
-        if (exponent < 0) {
-            throw new IllegalArgumentException("Exponent must be non-negative but it is %d".formatted(exponent));
-        }
+        assertExponentIsNonNegative(exponent);
         BigInteger curBase = base;
         int curExponent = exponent;
         BigInteger result = BigInteger.ONE;
