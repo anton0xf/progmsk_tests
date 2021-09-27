@@ -22,8 +22,8 @@ public class Power {
      * </br>
      * So result can be get by O(log(exponent)) multiplications. For example:
      * <code>
-     * b^7 = 1 * b * b^6 = 1 * b * (b*b)^3
-     * =[b1 = b*b]= 1 * b * b1 * b1^2 = 1 * b * b1 * (b1*b1)^1 = 1 * b * b1 * (b1*b1)
+     * b^7 = (1 * b) * b^6 = (1 * b) * (b*b)^3
+     * =[b1 := b*b]= (1 * b * b1) * b1^2 = (1 * b * b1) * (b1*b1)^1 = 1 * b * b1 * (b1*b1)
      * = 1 * b * (b*b) * ((b*b)*(b*b))
      * </code>
      */
