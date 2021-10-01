@@ -1,10 +1,11 @@
 package pmtests.lesson1;
 
 import java.math.BigInteger;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class Power {
+    public static final Sequence<BigInteger> SEQUENCE
+            = new Sequence<>(BigInteger.ONE, BigInteger::multiply, b -> b.multiply(b));
+
     private static void assertExponentIsNonNegative(int exponent) {
         if (exponent < 0) {
             throw new IllegalArgumentException("Exponent must be non-negative but it is %d".formatted(exponent));
@@ -52,23 +53,7 @@ public class Power {
 
     public static BigInteger fast2(BigInteger base, int exponent) throws IllegalArgumentException {
         assertExponentIsNonNegative(exponent);
-        return fastNth(base, exponent, BigInteger.ONE, BigInteger::multiply, b -> b.multiply(b));
-    }
-
-    private static <T> T fastNth(T init, int n, T neutral, BiFunction<T, T, T> nextFn, Function<T, T> doubleFn) {
-        T val = init;
-        int i = n;
-        T result = neutral;
-        while (i > 0) {
-            if (i % 2 == 0) {
-                val = doubleFn.apply(val);
-                i /= 2;
-            } else {
-                i--;
-                result = nextFn.apply(result, val);
-            }
-        }
-        return result;
+        return SEQUENCE.fastNth(base, exponent);
     }
 
     public static BigInteger fastRecursive(BigInteger base, int exponent) throws IllegalArgumentException {
