@@ -20,6 +20,15 @@ public class Sequence<T> {
         this.doubleFn = doubleFn;
     }
 
+    public T simpleNth(T first, int n) {
+        assertNIsNonNegative(n);
+        T result = neutral;
+        for (int i = n; i > 0; i--) {
+            result = nextFn.apply(result, first);
+        }
+        return result;
+    }
+
     public T fastNth(T first, int n) {
         assertNIsNonNegative(n);
         T val = first;

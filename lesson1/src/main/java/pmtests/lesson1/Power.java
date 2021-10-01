@@ -22,6 +22,10 @@ public class Power {
         return result;
     }
 
+    public static BigInteger simple2(BigInteger base, int exponent) throws IllegalArgumentException {
+        return SEQUENCE.simpleNth(base, exponent);
+    }
+
     /**
      * Note:
      * b^(2*e) = (b^2)^e
