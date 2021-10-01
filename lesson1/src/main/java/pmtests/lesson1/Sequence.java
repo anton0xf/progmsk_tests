@@ -8,6 +8,12 @@ public class Sequence<T> {
     private final BiFunction<T, T, T> nextFn;
     private final Function<T, T> doubleFn;
 
+    private static void assertNIsNonNegative(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("N must be non-negative but it is %d".formatted(n));
+        }
+    }
+
     public Sequence(T neutral, BiFunction<T, T, T> nextFn, Function<T, T> doubleFn) {
         this.neutral = neutral;
         this.nextFn = nextFn;
@@ -15,6 +21,7 @@ public class Sequence<T> {
     }
 
     public T fastNth(T first, int n) {
+        assertNIsNonNegative(n);
         T val = first;
         int i = n;
         T result = neutral;

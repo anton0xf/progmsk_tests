@@ -60,6 +60,12 @@ class PowerTest {
     }
 
     @Test
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public void fast2_negativePowerOfTen() {
+        assertThrows(IllegalArgumentException.class, () -> Power.fast2(BigInteger.TEN, -1));
+    }
+
+    @Test
     public void fast2_sameAsSimple() {
         checkSamples(Power::fast2);
     }

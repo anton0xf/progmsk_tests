@@ -52,7 +52,6 @@ public class Power {
     }
 
     public static BigInteger fast2(BigInteger base, int exponent) throws IllegalArgumentException {
-        assertExponentIsNonNegative(exponent);
         return SEQUENCE.fastNth(base, exponent);
     }
 
