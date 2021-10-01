@@ -60,6 +60,11 @@ class PowerTest {
     }
 
     @Test
+    public void fast2_sameAsSimple() {
+        checkSamples(Power::fast2);
+    }
+
+    @Test
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void fastRecursive_negativePowerOfTen() {
         assertThrows(IllegalArgumentException.class, () -> Power.fastRecursive(BigInteger.TEN, -1));
