@@ -48,6 +48,21 @@ public class Power {
         return result;
     }
 
+    public static BigInteger fastRecursive(BigInteger base, int exponent) throws IllegalArgumentException {
+        assertExponentIsNonNegative(exponent);
+        return fastIterate(BigInteger.ONE, base, exponent);
+    }
+
+    private static BigInteger fastIterate(BigInteger acc, BigInteger base, int exponent) {
+        if (exponent == 0) {
+            return acc;
+        }
+        if (exponent % 2 == 0) {
+            return fastIterate(acc, base.multiply(base), exponent / 2);
+        }
+        return fastIterate(acc.multiply(base), base, exponent - 1);
+    }
+
     public static void main(String[] args) {
         System.out.printf("2^3 = %d%n", simple(BigInteger.TWO, 3));
     }

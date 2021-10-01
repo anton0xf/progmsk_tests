@@ -1,10 +1,9 @@
 package pmtests.lesson1;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
-import java.util.List;
+import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,17 +40,33 @@ class PowerTest {
         assertThrows(IllegalArgumentException.class, () -> Power.fast(BigInteger.TEN, -1));
     }
 
-    private static void checkFast(BigInteger base, int exponent) {
-        assertEquals(Power.simple(base, exponent), Power.fast(base, exponent),
+    private static void checkPowerFn(BigInteger base, int exponent,
+                                     BiFunction<BigInteger, Integer, BigInteger> powerFn) {
+        assertEquals(Power.simple(base, exponent), powerFn.apply(base, exponent),
                 "%d ^ %d".formatted(base, exponent));
+    }
+
+    private void checkSamples(BiFunction<BigInteger, Integer, BigInteger> powerFn) {
+        for (int b = -2; b <= 3; b++) {
+            for (int e = 0; e <= 10; e++) {
+                checkPowerFn(BigInteger.valueOf(b), e, powerFn);
+            }
+        }
     }
 
     @Test
     public void fast_sameAsSimple() {
-        for (int b = -2; b <= 3; b++) {
-            for (int e = 0; e <= 5; e++) {
-                checkFast(BigInteger.valueOf(b), e);
-            }
-        }
+        checkSamples(Power::fast);
+    }
+
+    @Test
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public void fastRecursive_negativePowerOfTen() {
+        assertThrows(IllegalArgumentException.class, () -> Power.fastRecursive(BigInteger.TEN, -1));
+    }
+
+    @Test
+    public void fastRecursive_sameAsSimple() {
+        checkSamples(Power::fastRecursive);
     }
 }
