@@ -3,8 +3,7 @@ package pmtests.lesson1;
 import java.math.BigInteger;
 
 public class Power {
-    public static final Sequence<BigInteger> SEQUENCE
-            = new Sequence<>(BigInteger.ONE, BigInteger::multiply, b -> b.multiply(b));
+    public static final Sequence<BigInteger> SEQUENCE = new Sequence<>(BigInteger.ONE, BigInteger::multiply);
 
     private static void assertExponentIsNonNegative(int exponent) {
         if (exponent < 0) {

@@ -1,12 +1,10 @@
 package pmtests.lesson1;
 
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class Sequence<T> {
     private final T neutral;
-    private final BiFunction<T, T, T> nextFn;
-    private final Function<T, T> doubleFn;
+    private final BiFunction<T, T, T> sumFn;
 
     private static void assertNIsNonNegative(int n) {
         if (n < 0) {
@@ -14,17 +12,16 @@ public class Sequence<T> {
         }
     }
 
-    public Sequence(T neutral, BiFunction<T, T, T> nextFn, Function<T, T> doubleFn) {
+    public Sequence(T neutral, BiFunction<T, T, T> sumFn) {
         this.neutral = neutral;
-        this.nextFn = nextFn;
-        this.doubleFn = doubleFn;
+        this.sumFn = sumFn;
     }
 
     public T simpleNth(T first, int n) {
         assertNIsNonNegative(n);
         T result = neutral;
         for (int i = n; i > 0; i--) {
-            result = nextFn.apply(result, first);
+            result = sumFn.apply(result, first);
         }
         return result;
     }
@@ -36,11 +33,11 @@ public class Sequence<T> {
         T result = neutral;
         while (i > 0) {
             if (i % 2 == 0) {
-                val = doubleFn.apply(val);
+                val = sumFn.apply(val, val);
                 i /= 2;
             } else {
                 i--;
-                result = nextFn.apply(result, val);
+                result = sumFn.apply(result, val);
             }
         }
         return result;
