@@ -1,5 +1,6 @@
 plugins {
     id 'pmtests.java-application-conventions'
+    id "me.champeau.jmh" version "0.6.6"
 }
 
 dependencies {
@@ -8,4 +9,11 @@ dependencies {
 application {
     // Define the main class for the application.
     mainClass = 'pmtests.lesson1.Power'
+}
+
+jmh {
+    fork = 3
+    iterations = 5
+    warmup = '1s'
+    timeOnIteration = '1s'
 }
