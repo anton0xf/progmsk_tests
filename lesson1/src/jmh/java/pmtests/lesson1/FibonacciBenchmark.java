@@ -1,67 +1,29 @@
 package pmtests.lesson1;
 
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
 
 import java.math.BigInteger;
 
+@State(Scope.Benchmark)
 public class FibonacciBenchmark {
+    @Param({"10", "100", "1000", "10000"})
+    public int n;
+
     @Benchmark
-    public BigInteger simple_10() {
-        return Fibonacci.simple(10);
+    public BigInteger simple() {
+        return Fibonacci.simple(n);
     }
 
     @Benchmark
-    public BigInteger simple_100() {
-        return Fibonacci.simple(100);
+    public BigInteger simple2() {
+        return Fibonacci.simple2(n);
     }
 
     @Benchmark
-    public BigInteger simple_1000() {
-        return Fibonacci.simple(1000);
-    }
-
-    @Benchmark
-    public BigInteger simple_1e4() {
-        return Fibonacci.simple(10_000);
-    }
-
-    @Benchmark
-    public BigInteger simple2_10() {
-        return Fibonacci.simple2(10);
-    }
-
-    @Benchmark
-    public BigInteger simple2_100() {
-        return Fibonacci.simple2(100);
-    }
-
-    @Benchmark
-    public BigInteger simple2_1000() {
-        return Fibonacci.simple2(1000);
-    }
-
-    @Benchmark
-    public BigInteger simple2_1e4() {
-        return Fibonacci.simple2(10_000);
-    }
-
-    @Benchmark
-    public BigInteger fast_10() {
-        return Fibonacci.fast(10);
-    }
-
-    @Benchmark
-    public BigInteger fast_100() {
-        return Fibonacci.fast(100);
-    }
-
-    @Benchmark
-    public BigInteger fast_1000() {
-        return Fibonacci.fast(1000);
-    }
-
-    @Benchmark
-    public BigInteger fast_1e4() {
-        return Fibonacci.fast(10_000);
+    public BigInteger fast() {
+        return Fibonacci.fast(n);
     }
 }
