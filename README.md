@@ -3,4 +3,4 @@ my code for https://github.com/progmsk/tests
 
 ## structure
 * lesson1 - Java version of [progmsk/tests/lesson1](https://github.com/progmsk/tests/tree/main/lesson1)
-  (integer power and Fibonacci numbers)
+  (integer power and Fibonacci numbers) ([video](https://youtu.be/H8UtYWU64S0))
